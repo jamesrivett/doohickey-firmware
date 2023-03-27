@@ -24,17 +24,17 @@ Encoder ENC_2 = Encoder(ENC_2_CLK, ENC_2_DT);
 Encoder ENC_3 = Encoder(ENC_3_CLK, ENC_3_DT);
 
 void loop() {
-  Serial.println(digitalRead(BUTTON_0));
-  Serial.println(digitalRead(BUTTON_1));
-  Serial.println(digitalRead(BUTTON_2));
-  Serial.println(digitalRead(BUTTON_3));
-  Serial.println(digitalRead(ENC_0_BUTTON));
-  Serial.println(digitalRead(ENC_1_BUTTON));
-  Serial.println(digitalRead(ENC_2_BUTTON));
-  Serial.println(digitalRead(ENC_3_BUTTON));
-  Serial.println(ENC_0.read());
-  Serial.println(ENC_1.read());
-  Serial.println(ENC_2.read());
-  Serial.println(ENC_3.read());
+  Serial.println("button0: " + String(digitalRead(BUTTON_0)));
+  Serial.println("button1: " + String(digitalRead(BUTTON_1)));
+  Serial.println("button2: " + String(digitalRead(BUTTON_2)));
+  Serial.println("button3: " + String(digitalRead(BUTTON_3)));
+  Serial.println("enc_button0: " + String(digitalRead(ENC_0_BUTTON)));
+  Serial.println("enc_button1: " + String(digitalRead(ENC_1_BUTTON)));
+  Serial.println("enc_button2: " + String(digitalRead(ENC_2_BUTTON)));
+  Serial.println("enc_button3: " + String(digitalRead(ENC_3_BUTTON)));
+  Serial.println("enc_0: " + String(ENC_0.read()));
+  Serial.println("enc_1: " + String(ENC_1.read()));
+  Serial.println("enc_2: " + String(ENC_2.read()));
+  Serial.println("enc_3: " + String(ENC_3.read()));
   delay(50);
 }
