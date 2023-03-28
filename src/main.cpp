@@ -26,23 +26,6 @@ void doohickeyDebug(int* states) {
   Serial.println("enc_3: " + String(states[11]));
 }
 
-int* updateStates(int* states) {
-  states[0] = digitalRead(BUTTON_0);
-  states[1] = digitalRead(BUTTON_1);
-  states[2] = digitalRead(BUTTON_2);
-  states[3] = digitalRead(BUTTON_3);
-  states[4] = !digitalRead(ENC_0_BUTTON);
-  states[5] = !digitalRead(ENC_1_BUTTON);
-  states[6] = !digitalRead(ENC_2_BUTTON);
-  states[7] = !digitalRead(ENC_3_BUTTON);
-  states[8] = (-1 * ENC_0.read());
-  states[9] = (-1 * ENC_1.read());
-  states[10] = ENC_2.read();
-  states[11] = ENC_3.read();
-
-  return states;
-}
-
 void setup() { Serial.begin(9600);
   BootKeyboard.begin();
   Consumer.begin();
@@ -58,9 +41,107 @@ void setup() { Serial.begin(9600);
 }
 
 void loop() {
-  int *currentStates = updateStates(previousStates);
-  doohickeyDebug(currentStates);
+  // update current states
+  int currentStates[12];
 
+  // BUTTON_0
+  currentStates[0] = digitalRead(BUTTON_0);
+  if (currentStates[0] > previousStates[0]) {
+
+  }
+
+  // BUTTON_1
+  currentStates[1] = digitalRead(BUTTON_1);
+  if (currentStates[1] > previousStates[1]) {
+    
+  }
+
+  // BUTTON_2
+  currentStates[2] = digitalRead(BUTTON_2);
+  if (currentStates[2] > previousStates[2]) {
+    
+  }
+
+  // BUTTON_3
+  currentStates[3] = digitalRead(BUTTON_3);
+  if (currentStates[3] > previousStates[3]) {
+    
+  }
+
+  // ENC_0_BUTTON 
+  currentStates[4] = !digitalRead(ENC_0_BUTTON);
+  if (currentStates[4] > previousStates[4]) {
+    Consumer.write(MEDIA_VOL_MUTE);
+  }
+
+  // ENC_0 LEFT
+  currentStates[8] = (-1 * ENC_0.read());
+  if (currentStates[8] < previousStates[8]) {
+    Consumer.write(MEDIA_VOL_DOWN);
+  }
+
+  // ENC_0 RIGHT 
+  currentStates[8] = (-1 * ENC_0.read());
+  if (currentStates[8] > previousStates[8]) {
+    Consumer.write(MEDIA_VOL_UP);
+  }
+
+  // ENC_1_BUTTON 
+  currentStates[5] = !digitalRead(ENC_1_BUTTON);
+  if (currentStates[5] > previousStates[5]) {
+    
+  }
+
+  // ENC_1 LEFT
+  currentStates[9] = (-1 * ENC_1.read());
+  if (currentStates[9] < previousStates[9]) {
+    
+  }
+  
+  // ENC_1 RIGHT
+  currentStates[9] = (-1 * ENC_1.read());
+  if (currentStates[9] > previousStates[9]) {
+    
+  }
+
+  // ENC_2_BUTTON 
+  currentStates[6] = !digitalRead(ENC_2_BUTTON);
+  if (currentStates[6] > previousStates[6]) {
+    
+  }
+
+  // ENC_2 LEFT
+  currentStates[10] = ENC_2.read();
+  if (currentStates[10] < previousStates[10]) {
+    
+  }
+  
+  // ENC_2 RIGHT
+  currentStates[10] = ENC_2.read();
+  if (currentStates[10] > previousStates[10]) {
+    
+  }
+
+  // ENC_3_BUTTON 
+  currentStates[7] = !digitalRead(ENC_3_BUTTON);
+  if (currentStates[7] > previousStates[7]) {
+    
+  }
+
+  // ENC_3 LEFT
+  currentStates[11] = ENC_3.read();
+  if (currentStates[11] < previousStates[11]) {
+    
+  }
+  
+  // ENC_3 RIGHT
+  currentStates[11] = ENC_3.read();
+  if (currentStates[11] > previousStates[11]) {
+    
+  }
+
+
+  // update previous states
   for (int i = 0; i < sizeof(currentStates) / sizeof(int); i++) {
     previousStates[i] = currentStates[i];
   }
