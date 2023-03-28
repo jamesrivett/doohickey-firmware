@@ -75,13 +75,13 @@ void loop() {
   }
 
   // ENC_0 LEFT
-  currentStates[8] = (-1 * ENC_0.read());
+  currentStates[8] = (-1 * ENC_0.read()) / 4;
   if (currentStates[8] < previousStates[8]) {
     Consumer.write(MEDIA_VOL_DOWN);
   }
 
   // ENC_0 RIGHT 
-  currentStates[8] = (-1 * ENC_0.read());
+  currentStates[8] = (-1 * ENC_0.read()) / 4;
   if (currentStates[8] > previousStates[8]) {
     Consumer.write(MEDIA_VOL_UP);
   }
@@ -93,13 +93,13 @@ void loop() {
   }
 
   // ENC_1 LEFT
-  currentStates[9] = (-1 * ENC_1.read());
+  currentStates[9] = (-1 * ENC_1.read()) / 4;
   if (currentStates[9] < previousStates[9]) {
     
   }
   
   // ENC_1 RIGHT
-  currentStates[9] = (-1 * ENC_1.read());
+  currentStates[9] = (-1 * ENC_1.read()) / 4;
   if (currentStates[9] > previousStates[9]) {
     
   }
@@ -111,13 +111,13 @@ void loop() {
   }
 
   // ENC_2 LEFT
-  currentStates[10] = ENC_2.read();
+  currentStates[10] = ENC_2.read() / 4;
   if (currentStates[10] < previousStates[10]) {
     
   }
   
   // ENC_2 RIGHT
-  currentStates[10] = ENC_2.read();
+  currentStates[10] = ENC_2.read() / 4;
   if (currentStates[10] > previousStates[10]) {
     
   }
@@ -129,13 +129,13 @@ void loop() {
   }
 
   // ENC_3 LEFT
-  currentStates[11] = ENC_3.read();
+  currentStates[11] = ENC_3.read() / 4;
   if (currentStates[11] < previousStates[11]) {
     
   }
   
   // ENC_3 RIGHT
-  currentStates[11] = ENC_3.read();
+  currentStates[11] = ENC_3.read() / 4;
   if (currentStates[11] > previousStates[11]) {
     
   }
