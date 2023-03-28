@@ -41,13 +41,12 @@ void setup() { Serial.begin(9600);
 }
 
 void loop() {
-  // update current states
   int currentStates[12];
 
   // BUTTON_0
   currentStates[0] = digitalRead(BUTTON_0);
   if (currentStates[0] > previousStates[0]) {
-
+    Consumer.write(MEDIA_VOL_MUTE);
   }
 
   // BUTTON_1
@@ -89,19 +88,19 @@ void loop() {
   // ENC_1_BUTTON 
   currentStates[5] = !digitalRead(ENC_1_BUTTON);
   if (currentStates[5] > previousStates[5]) {
-    
+
   }
 
   // ENC_1 LEFT
   currentStates[9] = (-1 * ENC_1.read()) / 4;
   if (currentStates[9] < previousStates[9]) {
-    
+    BootKeyboard.write(KEY_DOWN_ARROW);
   }
   
   // ENC_1 RIGHT
   currentStates[9] = (-1 * ENC_1.read()) / 4;
   if (currentStates[9] > previousStates[9]) {
-    
+    BootKeyboard.write(KEY_UP_ARROW);
   }
 
   // ENC_2_BUTTON 
@@ -113,13 +112,13 @@ void loop() {
   // ENC_2 LEFT
   currentStates[10] = ENC_2.read() / 4;
   if (currentStates[10] < previousStates[10]) {
-    
+    BootKeyboard.write(KEY_LEFT_ARROW);
   }
   
   // ENC_2 RIGHT
   currentStates[10] = ENC_2.read() / 4;
   if (currentStates[10] > previousStates[10]) {
-    
+    BootKeyboard.write(KEY_RIGHT_ARROW);
   }
 
   // ENC_3_BUTTON 
@@ -146,5 +145,5 @@ void loop() {
     previousStates[i] = currentStates[i];
   }
 
-  delay(50);
+  delay(10);
 }
