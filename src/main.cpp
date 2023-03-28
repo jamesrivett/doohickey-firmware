@@ -41,6 +41,7 @@ void setup() { Serial.begin(9600);
 }
 
 void loop() {
+  long t0 = millis();
   int currentStates[12];
 
   // BUTTON_0
@@ -144,6 +145,10 @@ void loop() {
   for (int i = 0; i < sizeof(currentStates) / sizeof(int); i++) {
     previousStates[i] = currentStates[i];
   }
+
+  long t1 = millis();
+  int delta = t1 - t0;
+  Serial.println(String(delta));
 
   delay(10);
 }
