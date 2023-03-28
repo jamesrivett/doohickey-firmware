@@ -28,12 +28,12 @@ void loop() {
   Serial.println("button1: " + String(digitalRead(BUTTON_1)));
   Serial.println("button2: " + String(digitalRead(BUTTON_2)));
   Serial.println("button3: " + String(digitalRead(BUTTON_3)));
-  Serial.println("enc_button0: " + String(digitalRead(ENC_0_BUTTON)));
-  Serial.println("enc_button1: " + String(digitalRead(ENC_1_BUTTON)));
-  Serial.println("enc_button2: " + String(digitalRead(ENC_2_BUTTON)));
-  Serial.println("enc_button3: " + String(digitalRead(ENC_3_BUTTON)));
-  Serial.println("enc_0: " + String(ENC_0.read()));
-  Serial.println("enc_1: " + String(ENC_1.read()));
+  Serial.println("enc_button0: " + String(!digitalRead(ENC_0_BUTTON)));
+  Serial.println("enc_button1: " + String(!digitalRead(ENC_1_BUTTON)));
+  Serial.println("enc_button2: " + String(!digitalRead(ENC_2_BUTTON)));
+  Serial.println("enc_button3: " + String(!digitalRead(ENC_3_BUTTON)));
+  Serial.println("enc_0: " + String(-1 * ENC_0.read()));
+  Serial.println("enc_1: " + String(-1 * ENC_1.read()));
   Serial.println("enc_2: " + String(ENC_2.read()));
   Serial.println("enc_3: " + String(ENC_3.read()));
   delay(50);
