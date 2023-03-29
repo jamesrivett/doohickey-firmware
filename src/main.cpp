@@ -132,8 +132,11 @@ void loop() {
   // ENC_1_BUTTON 
   currentStates[5] = !digitalRead(ENC_1_BUTTON);
   if (currentStates[5] > previousStates[5]) {
-    switch(mode) {}
-    BootKeyboard.write(KEY_ENTER);
+    switch(mode) {
+      case 0:
+        BootKeyboard.write(KEY_ENTER);
+        break;
+    }
   }
 
   // ENC_1 LEFT
@@ -165,8 +168,11 @@ void loop() {
   // ENC_2_BUTTON 
   currentStates[6] = !digitalRead(ENC_2_BUTTON);
   if (currentStates[6] > previousStates[6]) {
-    switch(mode) {}
-    
+    switch(mode) {
+      case 1:
+        BootKeyboard.write(KEY_ENTER);
+        break;
+    }
   }
 
   // ENC_2 LEFT
