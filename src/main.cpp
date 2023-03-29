@@ -154,7 +154,7 @@ void loop() {
   if (currentStates[9] < previousStates[9]) {
     switch(mode) {
       case 0:
-        BootKeyboard.write(KEY_DOWN_ARROW);
+        BootKeyboard.write(KEY_UP_ARROW);
         break;
       case 1:
         BootKeyboard.write(KEY_LEFT_ARROW);
@@ -166,7 +166,7 @@ void loop() {
   if (currentStates[9] > previousStates[9]) {
     switch(mode) {
       case 0:
-        BootKeyboard.write(KEY_UP_ARROW);
+        BootKeyboard.write(KEY_DOWN_ARROW);
         break;
       case 1:
         BootKeyboard.write(KEY_RIGHT_ARROW);
@@ -190,7 +190,7 @@ void loop() {
         BootKeyboard.write(KEY_LEFT_ARROW);
         break;
       case 1:
-        BootKeyboard.write(KEY_DOWN_ARROW);
+        BootKeyboard.write(KEY_UP_ARROW);
         break;
     }
   }
@@ -202,7 +202,7 @@ void loop() {
         BootKeyboard.write(KEY_RIGHT_ARROW);
         break;
       case 1:
-        BootKeyboard.write(KEY_UP_ARROW);
+        BootKeyboard.write(KEY_DOWN_ARROW);
         break;
     }
   }
