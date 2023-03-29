@@ -105,8 +105,11 @@ void loop() {
   // ENC_0_BUTTON 
   currentStates[4] = !digitalRead(ENC_0_BUTTON);
   if (currentStates[4] > previousStates[4]) {
-    switch(mode) {}
-    Consumer.write(MEDIA_VOL_MUTE);
+    switch(mode) {
+      case 0:
+        Consumer.write(MEDIA_VOL_MUTE);
+        break;
+    }
   }
 
   // ENC_0 LEFT
@@ -203,8 +206,11 @@ void loop() {
 
   // ENC_3_BUTTON (was already state-updated at mode change check)
   if (currentStates[7] > previousStates[7]) {
-    switch(mode) {}
-    
+    switch(mode) {
+      case 1:
+        Consumer.write(MEDIA_VOL_MUTE);
+        break;
+    }
   }
 
   // ENC_3 LEFT
