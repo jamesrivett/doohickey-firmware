@@ -56,6 +56,7 @@ void loop() {
     mode++;
     mode = mode % NUM_MODES;
     lastModeChange = millis();
+    delay(100);
     return;
   }
 
