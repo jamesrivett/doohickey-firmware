@@ -10,6 +10,8 @@ Encoder ENC_2 = Encoder(ENC_2_CLK, ENC_2_DT);
 Encoder ENC_3 = Encoder(ENC_3_CLK, ENC_3_DT);
 
 u8 mode = 0;
+u8 NUM_MODES = 2;
+
 long lastModeChange = 0;
 int previousStates[12];
 
@@ -52,7 +54,7 @@ void loop() {
   long timeSinceLastModeChange = millis() - lastModeChange;
   if (currentStates[0] && currentStates[7] && timeSinceLastModeChange > 300) {
     mode++;
-    mode = mode % 2;
+    mode = mode % NUM_MODES;
     lastModeChange = millis();
     return;
   }
