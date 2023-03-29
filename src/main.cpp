@@ -14,6 +14,7 @@ u8 NUM_MODES = 2;
 
 long lastModeChange = 0;
 int previousStates[12];
+int currentStates[12];
 
 void doohickeyDebug(int* states) {
   Serial.println("button0: " + String(states[0]));
@@ -28,6 +29,21 @@ void doohickeyDebug(int* states) {
   Serial.println("enc_1: " + String(states[9]));
   Serial.println("enc_2: " + String(states[10]));
   Serial.println("enc_3: " + String(states[11]));
+}
+
+void updateStates() {
+  currentStates[0] = digitalRead(BUTTON_0);
+  currentStates[1] = digitalRead(BUTTON_1);
+  currentStates[2] = digitalRead(BUTTON_2);
+  currentStates[3] = digitalRead(BUTTON_3);
+  currentStates[4] = !digitalRead(ENC_0_BUTTON);
+  currentStates[5] = !digitalRead(ENC_1_BUTTON);
+  currentStates[6] = !digitalRead(ENC_2_BUTTON);
+  currentStates[7] = !digitalRead(ENC_3_BUTTON);
+  currentStates[8] = (-1 * ENC_0.read()) / 4;
+  currentStates[9] = (-1 * ENC_1.read()) / 4;
+  currentStates[10] = ENC_2.read() / 4;
+  currentStates[11] = ENC_3.read() / 4;
 }
 
 void setup() { Serial.begin(9600);
@@ -46,11 +62,9 @@ void setup() { Serial.begin(9600);
 
 void loop() {
   long t0 = millis();
-  int currentStates[12];
+  updateStates();
 
   // check for mode change
-  currentStates[0] = digitalRead(BUTTON_0);
-  currentStates[7] = !digitalRead(ENC_3_BUTTON);
   long timeSinceLastModeChange = millis() - lastModeChange;
   if (currentStates[0] && currentStates[7] && timeSinceLastModeChange > 300) {
     mode++;
@@ -60,7 +74,7 @@ void loop() {
     return;
   }
 
-  // BUTTON_0 (was already state-updated at mode change check)
+  // BUTTON_0
   if (currentStates[0] > previousStates[0]) {
     switch(mode) {
       case 0:
@@ -70,7 +84,6 @@ void loop() {
   }
 
   // BUTTON_1
-  currentStates[1] = digitalRead(BUTTON_1);
   if (currentStates[1] > previousStates[1]) {
     switch(mode) {
       case 0:
@@ -80,7 +93,6 @@ void loop() {
   }
 
   // BUTTON_2
-  currentStates[2] = digitalRead(BUTTON_2);
   if (currentStates[2] > previousStates[2]) {
     switch(mode) {
       case 1:
@@ -90,7 +102,6 @@ void loop() {
   }
 
   // BUTTON_3
-  currentStates[3] = digitalRead(BUTTON_3);
   if (currentStates[3] > previousStates[3]) {
     switch(mode) {
       case 1:
@@ -104,7 +115,6 @@ void loop() {
 
 
   // ENC_0_BUTTON 
-  currentStates[4] = !digitalRead(ENC_0_BUTTON);
   if (currentStates[4] > previousStates[4]) {
     switch(mode) {
       case 0:
@@ -114,7 +124,6 @@ void loop() {
   }
 
   // ENC_0 LEFT
-  currentStates[8] = (-1 * ENC_0.read()) / 4;
   if (currentStates[8] < previousStates[8]) {
     switch(mode) {
       case 0:
@@ -124,7 +133,6 @@ void loop() {
   }
 
   // ENC_0 RIGHT 
-  currentStates[8] = (-1 * ENC_0.read()) / 4;
   if (currentStates[8] > previousStates[8]) {
     switch(mode) {
       case 0:
@@ -134,7 +142,6 @@ void loop() {
   }
 
   // ENC_1_BUTTON 
-  currentStates[5] = !digitalRead(ENC_1_BUTTON);
   if (currentStates[5] > previousStates[5]) {
     switch(mode) {
       case 0:
@@ -144,7 +151,6 @@ void loop() {
   }
 
   // ENC_1 LEFT
-  currentStates[9] = (-1 * ENC_1.read()) / 4;
   if (currentStates[9] < previousStates[9]) {
     switch(mode) {
       case 0:
@@ -157,7 +163,6 @@ void loop() {
   }
   
   // ENC_1 RIGHT
-  currentStates[9] = (-1 * ENC_1.read()) / 4;
   if (currentStates[9] > previousStates[9]) {
     switch(mode) {
       case 0:
@@ -170,7 +175,6 @@ void loop() {
   }
 
   // ENC_2_BUTTON 
-  currentStates[6] = !digitalRead(ENC_2_BUTTON);
   if (currentStates[6] > previousStates[6]) {
     switch(mode) {
       case 1:
@@ -180,7 +184,6 @@ void loop() {
   }
 
   // ENC_2 LEFT
-  currentStates[10] = ENC_2.read() / 4;
   if (currentStates[10] < previousStates[10]) {
     switch(mode) {
       case 0:
@@ -193,7 +196,6 @@ void loop() {
   }
   
   // ENC_2 RIGHT
-  currentStates[10] = ENC_2.read() / 4;
   if (currentStates[10] > previousStates[10]) {
     switch(mode) {
       case 0:
@@ -205,7 +207,7 @@ void loop() {
     }
   }
 
-  // ENC_3_BUTTON (was already state-updated at mode change check)
+  // ENC_3_BUTTON
   if (currentStates[7] > previousStates[7]) {
     switch(mode) {
       case 1:
@@ -215,7 +217,6 @@ void loop() {
   }
 
   // ENC_3 LEFT
-  currentStates[11] = ENC_3.read() / 4;
   if (currentStates[11] < previousStates[11]) {
     switch(mode) {
       case 1:
@@ -225,7 +226,6 @@ void loop() {
   }
   
   // ENC_3 RIGHT
-  currentStates[11] = ENC_3.read() / 4;
   if (currentStates[11] > previousStates[11]) {
     switch(mode) {
       case 1:
