@@ -93,13 +93,12 @@ void loop() {
     TXLED1;
     delay(50);
     TXLED0;
-    delay(50);
 
     for(u8 i = 0; i < (mode + 1); i++) {
+      delay(500);
       TXLED1;
       delay(500);
       TXLED0;
-      delay(500);
     }
 
     lastModeChange = millis();
