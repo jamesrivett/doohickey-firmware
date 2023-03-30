@@ -9,6 +9,7 @@ Encoder ENC_1 = Encoder(ENC_1_CLK, ENC_1_DT);
 Encoder ENC_2 = Encoder(ENC_2_CLK, ENC_2_DT);
 Encoder ENC_3 = Encoder(ENC_3_CLK, ENC_3_DT);
 
+bool shift;
 u8 mode = 0;
 u8 NUM_MODES = 2;
 
@@ -106,29 +107,35 @@ void loop() {
     return;
   }
 
+  // SHIFT
+  if(currentStates[3]) {shift = true;} else {shift = false;}
+
   // BUTTON_0
   if (currentStates[0] > previousStates[0]) {
-    Consumer.write(CONSUMER_BROWSER_FORWARD);
+    if (shift) {
+      Consumer.write(MEDIA_NEXT);
+    }
+    else {
+      Consumer.write(CONSUMER_BROWSER_FORWARD);
+    }
   }
 
   // BUTTON_1
   if (currentStates[1] > previousStates[1]) {
-    Consumer.write(CONSUMER_BROWSER_BACK);
+    if (shift) {
+      Consumer.write(MEDIA_PLAY_PAUSE);
+    }
+    else {
+      Consumer.write(CONSUMER_BROWSER_BACK);
+    }
   }
 
   // BUTTON_2
   if (currentStates[2] > previousStates[2]) {
-    switch(mode) {
+    if (shift) {
+      Consumer.write(MEDIA_PREVIOUS);
     }
   }
-
-  // BUTTON_3
-  if (currentStates[3] > previousStates[3]) {
-    switch(mode) {
-    }
-  }
-
-
 
 
 
