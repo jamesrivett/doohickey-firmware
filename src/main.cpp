@@ -13,6 +13,7 @@ u8 mode = 0;
 u8 NUM_MODES = 2;
 
 long lastModeChange = 0;
+long timeSinceLastModeChange = 0;
 int previousStates[12];
 int currentStates[12];
 
@@ -31,7 +32,7 @@ void doohickeyDebug(int* states) {
   Serial.println("enc_3: " + String(states[11]));
 }
 
-void updateStates() {
+inline void updateCurrentStates() {
   currentStates[0] = digitalRead(BUTTON_0);
   currentStates[1] = digitalRead(BUTTON_1);
   currentStates[2] = digitalRead(BUTTON_2);
@@ -44,6 +45,17 @@ void updateStates() {
   currentStates[9] = (-1 * ENC_1.read()) / 4;
   currentStates[10] = ENC_2.read() / 4;
   currentStates[11] = ENC_3.read() / 4;
+}
+
+inline void updatePreviousStates() {
+  for (int i = 0; i < sizeof(currentStates) / sizeof(int); i++) {
+    previousStates[i] = currentStates[i];
+  }
+}
+
+inline bool checkForModeChange() {
+  timeSinceLastModeChange = millis() - lastModeChange;
+  return currentStates[3] && currentStates[8] != previousStates[8] && timeSinceLastModeChange > 300;
 }
 
 void setup() { Serial.begin(9600);
@@ -62,51 +74,57 @@ void setup() { Serial.begin(9600);
 
 void loop() {
   long t0 = millis();
-  updateStates();
+  updateCurrentStates();
 
-  // check for mode change
-  long timeSinceLastModeChange = millis() - lastModeChange;
-  if (currentStates[0] && currentStates[7] && timeSinceLastModeChange > 300) {
-    mode++;
+  if (checkForModeChange()) {
+    if (currentStates[8] > previousStates[8]) {
+      mode++;
+    }
+    else if (currentStates[8] < previousStates[8]) {
+      mode--;
+    }
     mode = mode % NUM_MODES;
+
+    TXLED1;
+    delay(50);
+    TXLED0;
+    delay(50);
+    TXLED1;
+    delay(50);
+    TXLED0;
+    delay(50);
+
+    for(u8 i = 0; i < (mode + 1); i++) {
+      TXLED1;
+      delay(500);
+      TXLED0;
+      delay(500);
+    }
+
     lastModeChange = millis();
-    delay(500);
+    updatePreviousStates();
     return;
   }
 
   // BUTTON_0
   if (currentStates[0] > previousStates[0]) {
-    switch(mode) {
-      case 0:
-        Consumer.write(CONSUMER_BROWSER_FORWARD);
-        break;
-    }
+    Consumer.write(CONSUMER_BROWSER_FORWARD);
   }
 
   // BUTTON_1
   if (currentStates[1] > previousStates[1]) {
-    switch(mode) {
-      case 0:
-        Consumer.write(CONSUMER_BROWSER_BACK);
-        break;
-    }
+    Consumer.write(CONSUMER_BROWSER_BACK);
   }
 
   // BUTTON_2
   if (currentStates[2] > previousStates[2]) {
     switch(mode) {
-      case 1:
-        Consumer.write(CONSUMER_BROWSER_FORWARD);
-        break;
     }
   }
 
   // BUTTON_3
   if (currentStates[3] > previousStates[3]) {
     switch(mode) {
-      case 1:
-        Consumer.write(CONSUMER_BROWSER_BACK);
-        break;
     }
   }
 
@@ -234,12 +252,7 @@ void loop() {
     }
   }
 
-
-  // update previous states
-  for (int i = 0; i < sizeof(currentStates) / sizeof(int); i++) {
-    previousStates[i] = currentStates[i];
-  }
-
+  updatePreviousStates();
 
   long t1 = millis();
   int delta = t1 - t0;
