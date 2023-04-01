@@ -77,6 +77,7 @@ void loop() {
   long t0 = millis();
   updateCurrentStates();
 
+  // MODE CHANGE CHECK
   if (checkForModeChange()) {
     if (currentStates[8] > previousStates[8]) {
       mode++;
@@ -106,7 +107,7 @@ void loop() {
     return;
   }
 
-  // SHIFT
+  // SHIFT CHECK
   if(currentStates[3]) {shift = true;} else {shift = false;}
 
   // BUTTON_0
@@ -133,6 +134,9 @@ void loop() {
   if (currentStates[2] > previousStates[2]) {
     if (shift) {
       Consumer.write(MEDIA_PREVIOUS);
+    }
+    else {
+      Consumer.write(CONSUMER_BROWSER_FORWARD);
     }
   }
 
