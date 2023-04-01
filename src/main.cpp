@@ -10,8 +10,10 @@ Encoder ENC_2 = Encoder(ENC_2_CLK, ENC_2_DT);
 Encoder ENC_3 = Encoder(ENC_3_CLK, ENC_3_DT);
 
 bool shift;
-u8 mode = 1;
+u8 MODE = 0;
 u8 NUM_MODES = 2;
+
+u8 SCROLLING_SPEED; 
 
 long lastModeChange = 0;
 long timeSinceLastModeChange = 0;
@@ -80,12 +82,12 @@ void loop() {
   // MODE CHANGE CHECK
   if (checkForModeChange()) {
     if (currentStates[8] > previousStates[8]) {
-      mode++;
+      MODE++;
     }
     else if (currentStates[8] < previousStates[8]) {
-      mode--;
+      MODE--;
     }
-    mode = mode % NUM_MODES;
+    MODE = MODE % NUM_MODES;
 
     TXLED1;
     delay(50);
@@ -95,7 +97,7 @@ void loop() {
     delay(50);
     TXLED0;
 
-    for(u8 i = 0; i < (mode + 1); i++) {
+    for(u8 i = 0; i < (MODE + 1); i++) {
       delay(500);
       TXLED1;
       delay(500);
@@ -144,7 +146,7 @@ void loop() {
 
   // ENC_0_BUTTON 
   if (currentStates[4] > previousStates[4]) {
-    switch(mode) {
+    switch(MODE) {
       case 0:
         Consumer.write(MEDIA_VOL_MUTE);
         break;
@@ -165,7 +167,7 @@ void loop() {
 
   // ENC_0 LEFT
   if (currentStates[8] < previousStates[8]) {
-    switch(mode) {
+    switch(MODE) {
       case 0:
         Consumer.write(MEDIA_VOL_DOWN);
         break;
@@ -174,7 +176,7 @@ void loop() {
 
   // ENC_0 RIGHT 
   if (currentStates[8] > previousStates[8]) {
-    switch(mode) {
+    switch(MODE) {
       case 0:
         Consumer.write(MEDIA_VOL_UP);
         break;
@@ -183,7 +185,7 @@ void loop() {
 
   // ENC_1_BUTTON 
   if (currentStates[5] > previousStates[5]) {
-    switch(mode) {
+    switch(MODE) {
       case 0:
         BootKeyboard.write(KEY_ENTER);
         break;
@@ -192,7 +194,7 @@ void loop() {
 
   // ENC_1 LEFT
   if (currentStates[9] < previousStates[9]) {
-    switch(mode) {
+    switch(MODE) {
       case 0:
         BootKeyboard.write(KEY_UP_ARROW);
         break;
@@ -204,7 +206,7 @@ void loop() {
   
   // ENC_1 RIGHT
   if (currentStates[9] > previousStates[9]) {
-    switch(mode) {
+    switch(MODE) {
       case 0:
         BootKeyboard.write(KEY_DOWN_ARROW);
         break;
@@ -216,7 +218,7 @@ void loop() {
 
   // ENC_2_BUTTON 
   if (currentStates[6] > previousStates[6]) {
-    switch(mode) {
+    switch(MODE) {
       case 1:
         BootKeyboard.write(KEY_ENTER);
         break;
@@ -225,7 +227,7 @@ void loop() {
 
   // ENC_2 LEFT
   if (currentStates[10] < previousStates[10]) {
-    switch(mode) {
+    switch(MODE) {
       case 0:
         BootKeyboard.write(KEY_LEFT_ARROW);
         break;
@@ -237,7 +239,7 @@ void loop() {
   
   // ENC_2 RIGHT
   if (currentStates[10] > previousStates[10]) {
-    switch(mode) {
+    switch(MODE) {
       case 0:
         BootKeyboard.write(KEY_RIGHT_ARROW);
         break;
@@ -249,7 +251,7 @@ void loop() {
 
   // ENC_3_BUTTON
   if (currentStates[7] > previousStates[7]) {
-    switch(mode) {
+    switch(MODE) {
       case 0:
         if (shift) {
           BootKeyboard.press(KEY_RIGHT_ALT);
@@ -270,7 +272,7 @@ void loop() {
 
   // ENC_3 LEFT
   if (currentStates[11] < previousStates[11]) {
-    switch(mode) {
+    switch(MODE) {
       case 1:
         Consumer.write(MEDIA_VOL_DOWN);
         break;
@@ -279,7 +281,7 @@ void loop() {
   
   // ENC_3 RIGHT
   if (currentStates[11] > previousStates[11]) {
-    switch(mode) {
+    switch(MODE) {
       case 1:
         Consumer.write(MEDIA_VOL_UP);
       break;
@@ -291,7 +293,7 @@ void loop() {
   long t1 = millis();
   int delta = t1 - t0;
   Serial.println("delta: " + String(delta));
-  Serial.println("mode: " + String(mode));
+  Serial.println("MODE: " + String(MODE));
 
   delay(10);
 }
