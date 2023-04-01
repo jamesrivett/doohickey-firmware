@@ -10,7 +10,7 @@ Encoder ENC_2 = Encoder(ENC_2_CLK, ENC_2_DT);
 Encoder ENC_3 = Encoder(ENC_3_CLK, ENC_3_DT);
 
 bool shift;
-u8 mode = 0;
+u8 mode = 1;
 u8 NUM_MODES = 2;
 
 long lastModeChange = 0;
