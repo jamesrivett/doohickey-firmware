@@ -148,6 +148,18 @@ void loop() {
       case 0:
         Consumer.write(MEDIA_VOL_MUTE);
         break;
+      case 1:
+        if (shift) {
+          BootKeyboard.press(KEY_RIGHT_ALT);
+          BootKeyboard.write(KEY_RIGHT_BRACE);
+          BootKeyboard.release(KEY_RIGHT_ALT);
+        }
+        else {
+          BootKeyboard.press(KEY_RIGHT_ALT);
+          BootKeyboard.write(KEY_LEFT_BRACE);
+          BootKeyboard.release(KEY_RIGHT_ALT);
+        }
+        break;
     }
   }
 
@@ -238,6 +250,18 @@ void loop() {
   // ENC_3_BUTTON
   if (currentStates[7] > previousStates[7]) {
     switch(mode) {
+      case 0:
+        if (shift) {
+          BootKeyboard.press(KEY_RIGHT_ALT);
+          BootKeyboard.write(KEY_RIGHT_BRACE);
+          BootKeyboard.release(KEY_RIGHT_ALT);
+        }
+        else {
+          BootKeyboard.press(KEY_RIGHT_ALT);
+          BootKeyboard.write(KEY_LEFT_BRACE);
+          BootKeyboard.release(KEY_RIGHT_ALT);
+        }
+        break;
       case 1:
         Consumer.write(MEDIA_VOL_MUTE);
         break;
