@@ -61,7 +61,7 @@ inline bool checkForModeChange() {
   return currentStates[3] && currentStates[8] != previousStates[8] && timeSinceLastModeChange > 300;
 }
 
-void modeBlink(int mode) {
+inline void modeBlink(int mode) {
   TXLED1;
   delay(50);
   TXLED0;
@@ -74,6 +74,15 @@ void modeBlink(int mode) {
     delay(500);
     TXLED1;
     delay(500);
+    TXLED0;
+  }
+}
+
+void scrollBlink(int scrolling_speed) {
+  for(int i = 0; i < 4; i++) {
+    delay(200 / scrolling_speed);
+    TXLED1;
+    delay(200 / scrolling_speed);
     TXLED0;
   }
 }
@@ -198,7 +207,10 @@ void loop() {
   if (currentStates[9] < previousStates[9]) {
     switch(MODE) {
       case 0:
-        if (shift) {SCROLLING_SPEED--; SCROLLING_SPEED = abs(SCROLLING_SPEED % 5);}
+        if (shift) {
+          SCROLLING_SPEED = constrain(SCROLLING_SPEED-1, 1, 5);
+          scrollBlink(SCROLLING_SPEED);
+        }
         else {
           for (int i = 0; i < SCROLLING_SPEED; i++) {
             BootKeyboard.write(KEY_UP_ARROW);
@@ -215,7 +227,10 @@ void loop() {
   if (currentStates[9] > previousStates[9]) {
     switch(MODE) {
       case 0:
-        if (shift) {SCROLLING_SPEED++; SCROLLING_SPEED = abs(SCROLLING_SPEED % 5);}
+        if (shift) {
+          SCROLLING_SPEED = constrain(SCROLLING_SPEED+1, 1, 5);
+          scrollBlink(SCROLLING_SPEED);
+        }
         else {
           for (int i = 0; i < SCROLLING_SPEED; i++) {
             BootKeyboard.write(KEY_DOWN_ARROW);
@@ -244,7 +259,10 @@ void loop() {
         BootKeyboard.write(KEY_LEFT_ARROW);
         break;
       case 1:
-        if (shift) {SCROLLING_SPEED--; SCROLLING_SPEED = abs(SCROLLING_SPEED % 5);}
+        if (shift) {
+          SCROLLING_SPEED = constrain(SCROLLING_SPEED-1, 1, 5);
+          scrollBlink(SCROLLING_SPEED);
+        }
         else {
           for (int i = 0; i < SCROLLING_SPEED; i++) {
             BootKeyboard.write(KEY_UP_ARROW);
@@ -261,7 +279,10 @@ void loop() {
         BootKeyboard.write(KEY_RIGHT_ARROW);
         break;
       case 1:
-        if (shift) {SCROLLING_SPEED++; SCROLLING_SPEED = abs(SCROLLING_SPEED % 5);}
+        if (shift) {
+          SCROLLING_SPEED = constrain(SCROLLING_SPEED+1, 1, 5);
+          scrollBlink(SCROLLING_SPEED);
+        }
         else {
           for (int i = 0; i < SCROLLING_SPEED; i++) {
             BootKeyboard.write(KEY_DOWN_ARROW);
