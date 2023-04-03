@@ -13,7 +13,7 @@ bool shift;
 u8 MODE = 0;
 u8 NUM_MODES = 2;
 
-u8 SCROLLING_SPEED; 
+u8 SCROLLING_SPEED = 2; 
 
 long lastModeChange = 0;
 long timeSinceLastModeChange = 0;
@@ -61,6 +61,23 @@ inline bool checkForModeChange() {
   return currentStates[3] && currentStates[8] != previousStates[8] && timeSinceLastModeChange > 300;
 }
 
+void modeBlink(int mode) {
+  TXLED1;
+  delay(50);
+  TXLED0;
+  delay(50);
+  TXLED1;
+  delay(50);
+  TXLED0;
+
+  for(u8 i = 0; i < (mode + 1); i++) {
+    delay(500);
+    TXLED1;
+    delay(500);
+    TXLED0;
+  }
+}
+
 void setup() { Serial.begin(9600);
   BootKeyboard.begin();
   Consumer.begin();
@@ -88,22 +105,7 @@ void loop() {
       MODE--;
     }
     MODE = MODE % NUM_MODES;
-
-    TXLED1;
-    delay(50);
-    TXLED0;
-    delay(50);
-    TXLED1;
-    delay(50);
-    TXLED0;
-
-    for(u8 i = 0; i < (MODE + 1); i++) {
-      delay(500);
-      TXLED1;
-      delay(500);
-      TXLED0;
-    }
-
+    modeBlink(MODE);
     lastModeChange = millis();
     updatePreviousStates();
     return;
@@ -196,7 +198,12 @@ void loop() {
   if (currentStates[9] < previousStates[9]) {
     switch(MODE) {
       case 0:
-        BootKeyboard.write(KEY_UP_ARROW);
+        if (shift) {SCROLLING_SPEED--; SCROLLING_SPEED = abs(SCROLLING_SPEED % 5);}
+        else {
+          for (int i = 0; i < SCROLLING_SPEED; i++) {
+            BootKeyboard.write(KEY_UP_ARROW);
+          }
+        }
         break;
       case 1:
         BootKeyboard.write(KEY_LEFT_ARROW);
@@ -208,7 +215,12 @@ void loop() {
   if (currentStates[9] > previousStates[9]) {
     switch(MODE) {
       case 0:
-        BootKeyboard.write(KEY_DOWN_ARROW);
+        if (shift) {SCROLLING_SPEED++; SCROLLING_SPEED = abs(SCROLLING_SPEED % 5);}
+        else {
+          for (int i = 0; i < SCROLLING_SPEED; i++) {
+            BootKeyboard.write(KEY_DOWN_ARROW);
+          }
+        }
         break;
       case 1:
         BootKeyboard.write(KEY_RIGHT_ARROW);
@@ -232,7 +244,12 @@ void loop() {
         BootKeyboard.write(KEY_LEFT_ARROW);
         break;
       case 1:
-        BootKeyboard.write(KEY_UP_ARROW);
+        if (shift) {SCROLLING_SPEED--; SCROLLING_SPEED = abs(SCROLLING_SPEED % 5);}
+        else {
+          for (int i = 0; i < SCROLLING_SPEED; i++) {
+            BootKeyboard.write(KEY_UP_ARROW);
+          }
+        }
         break;
     }
   }
@@ -244,7 +261,12 @@ void loop() {
         BootKeyboard.write(KEY_RIGHT_ARROW);
         break;
       case 1:
-        BootKeyboard.write(KEY_DOWN_ARROW);
+        if (shift) {SCROLLING_SPEED++; SCROLLING_SPEED = abs(SCROLLING_SPEED % 5);}
+        else {
+          for (int i = 0; i < SCROLLING_SPEED; i++) {
+            BootKeyboard.write(KEY_DOWN_ARROW);
+          }
+        }
         break;
     }
   }
