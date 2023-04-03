@@ -13,7 +13,7 @@ bool shift;
 u8 MODE = 0;
 u8 NUM_MODES = 2;
 
-u8 SCROLLING_SPEED = 2; 
+u8 SCROLLING_SPEED = 3; 
 
 long lastModeChange = 0;
 long timeSinceLastModeChange = 0;
