@@ -126,30 +126,29 @@ void loop() {
   // BUTTON_0
   if (currentStates[0] > previousStates[0]) {
     if (shift) {
-      Consumer.write(MEDIA_NEXT);
+      Consumer.write(HID_CONSUMER_AC_FORWARD);
     }
     else {
-      Consumer.write(CONSUMER_BROWSER_FORWARD);
+      Consumer.write(MEDIA_NEXT);
     }
   }
 
   // BUTTON_1
   if (currentStates[1] > previousStates[1]) {
     if (shift) {
-      Consumer.write(MEDIA_PLAY_PAUSE);
     }
     else {
-      Consumer.write(CONSUMER_BROWSER_BACK);
+      Consumer.write(MEDIA_PLAY_PAUSE);
     }
   }
 
   // BUTTON_2
   if (currentStates[2] > previousStates[2]) {
     if (shift) {
-      Consumer.write(MEDIA_PREVIOUS);
+      Consumer.write(HID_CONSUMER_AC_BACK);
     }
     else {
-      Consumer.write(CONSUMER_BROWSER_FORWARD);
+      Consumer.write(MEDIA_PREVIOUS);
     }
   }
 
