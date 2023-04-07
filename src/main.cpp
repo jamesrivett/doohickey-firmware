@@ -182,6 +182,9 @@ void loop() {
       case 0:
         Consumer.write(MEDIA_VOL_DOWN);
         break;
+      case 2:
+        BootKeyboard.write(KEY_LEFT_BRACE);
+        break;
     }
   }
 
@@ -190,6 +193,9 @@ void loop() {
     switch(MODE) {
       case 0:
         Consumer.write(MEDIA_VOL_UP);
+        break;
+      case 2:
+        BootKeyboard.write(KEY_RIGHT_BRACE);
         break;
     }
   }
@@ -293,6 +299,7 @@ void loop() {
   }
 
   // ENC_3_BUTTON
+  // always listen for press
   if (currentStates[7] > previousStates[7]) {
     switch(MODE) {
       case 0:
@@ -310,6 +317,16 @@ void loop() {
       case 1:
         Consumer.write(MEDIA_VOL_MUTE);
         break;
+      case 2:
+        BootKeyboard.press(KEY_SPACE);
+        break;
+    }
+  }
+  // listen for release
+  else if (currentStates[7] < previousStates[7]) {
+    switch(MODE) {
+      case 2:
+        BootKeyboard.release(KEY_SPACE);
     }
   }
 
