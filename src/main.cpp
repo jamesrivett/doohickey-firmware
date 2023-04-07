@@ -135,12 +135,25 @@ void loop() {
   }
 
   // BUTTON_1
-  if (currentStates[1] > previousStates[1]) {
-    if (shift) {
-    }
-    else {
-      Consumer.write(MEDIA_PLAY_PAUSE);
-    }
+  switch(MODE) {
+    case 0 || 1:
+      if (currentStates[1] > previousStates[1]) {
+        if (shift) {
+        }
+        else {
+          Consumer.write(MEDIA_PLAY_PAUSE);
+        }
+      }
+      break;
+    case 2:
+      // check for press
+      if (currentStates[1] > previousStates[1]) {
+        BootKeyboard.press(KEY_SPACE);
+      }
+      // check for release
+      else if(currentStates[1] < previousStates[1]) {
+        BootKeyboard.release(KEY_SPACE);
+      }
   }
 
   // BUTTON_2
@@ -182,6 +195,9 @@ void loop() {
       case 0:
         Consumer.write(MEDIA_VOL_DOWN);
         break;
+      case 2:
+        BootKeyboard.write(KEY_LEFT_BRACE);
+        break;
     }
   }
 
@@ -190,6 +206,9 @@ void loop() {
     switch(MODE) {
       case 0:
         Consumer.write(MEDIA_VOL_UP);
+        break;
+      case 2:
+        BootKeyboard.write(KEY_RIGHT_BRACE);
         break;
     }
   }
