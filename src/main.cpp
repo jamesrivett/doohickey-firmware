@@ -335,7 +335,6 @@ void loop() {
         break;
       case 2:
         BootKeyboard.press(KEY_LEFT_CTRL);
-        BootKeyboard.press(KEY_LEFT_SHIFT);
         BootKeyboard.write(HID_KEYBOARD_EQUALS_AND_PLUS);
         BootKeyboard.releaseAll();
         break;
