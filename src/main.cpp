@@ -11,7 +11,7 @@ Encoder ENC_3 = Encoder(ENC_3_CLK, ENC_3_DT);
 
 bool shift;
 u8 MODE = 0;
-u8 NUM_MODES = 2;
+u8 NUM_MODES = 3;
 
 u8 SCROLLING_SPEED = 3; 
 
@@ -213,7 +213,7 @@ void loop() {
         }
         else {
           for (int i = 0; i < SCROLLING_SPEED; i++) {
-            BootKeyboard.write(KEY_UP_ARROW);
+            BootKeyboard.write(KEY_DOWN_ARROW);
           }
         }
         break;
@@ -233,7 +233,7 @@ void loop() {
         }
         else {
           for (int i = 0; i < SCROLLING_SPEED; i++) {
-            BootKeyboard.write(KEY_DOWN_ARROW);
+            BootKeyboard.write(KEY_UP_ARROW);
           }
         }
         break;
@@ -265,7 +265,7 @@ void loop() {
         }
         else {
           for (int i = 0; i < SCROLLING_SPEED; i++) {
-            BootKeyboard.write(KEY_UP_ARROW);
+            BootKeyboard.write(KEY_DOWN_ARROW);
           }
         }
         break;
@@ -285,7 +285,7 @@ void loop() {
         }
         else {
           for (int i = 0; i < SCROLLING_SPEED; i++) {
-            BootKeyboard.write(KEY_DOWN_ARROW);
+            BootKeyboard.write(KEY_UP_ARROW);
           }
         }
         break;
@@ -319,6 +319,11 @@ void loop() {
       case 1:
         Consumer.write(MEDIA_VOL_DOWN);
         break;
+      case 2:
+        BootKeyboard.press(KEY_LEFT_CTRL);
+        BootKeyboard.write(HID_KEYBOARD_MINUS_AND_UNDERSCORE);
+        BootKeyboard.releaseAll();
+        break;
     }
   }
   
@@ -327,7 +332,13 @@ void loop() {
     switch(MODE) {
       case 1:
         Consumer.write(MEDIA_VOL_UP);
-      break;
+        break;
+      case 2:
+        BootKeyboard.press(KEY_LEFT_CTRL);
+        BootKeyboard.press(KEY_LEFT_SHIFT);
+        BootKeyboard.write(HID_KEYBOARD_EQUALS_AND_PLUS);
+        BootKeyboard.releaseAll();
+        break;
     }
   }
 
