@@ -1,4 +1,5 @@
 #include <pins.h>
+#include <actions.h>
 
 #include <Arduino.h>
 #include <Encoder.h>
