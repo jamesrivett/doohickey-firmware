@@ -1,3 +1,4 @@
+#pragma once
 void doohickeyInit();
 
 void BUTTON_0_PRESS();
