@@ -1,7 +1,7 @@
-#include "inputs.h"
-#include "actions.h"
-#include "state.h"
-#include "blink.h"
+#include "inputs.hpp"
+#include "actions.hpp"
+#include "state.hpp"
+#include "blink.hpp"
 
 #include <Arduino.h>
 
