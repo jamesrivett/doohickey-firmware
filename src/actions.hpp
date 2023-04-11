@@ -26,3 +26,4 @@ void doohickeyDebug();
 void updateCurrentStates();
 void updatePreviousStates();
 bool checkForModeChange();
+void handleModeChange();
