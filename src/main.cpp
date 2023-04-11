@@ -13,17 +13,7 @@ void loop() {
 
   // MODE CHANGE CHECK
   if (checkForModeChange()) {
-    if (currentStates[8] > previousStates[8]) {
-      MODE++;
-    }
-    else if (currentStates[8] < previousStates[8]) {
-      MODE--;
-    }
-    MODE = MODE % NUM_MODES;
-    modeBlink(MODE);
-    lastModeChange = millis();
-    updatePreviousStates();
-    return;
+    handleModeChange();
   }
 
   // SHIFT CHECSHIFTK

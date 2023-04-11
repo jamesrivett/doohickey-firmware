@@ -301,3 +301,17 @@ bool checkForModeChange() {
   timeSinceLastModeChange = millis() - lastModeChange;
   return currentStates[3] && currentStates[8] != previousStates[8] && timeSinceLastModeChange > 300;
 }
+
+void handleModeChange() {
+    if (currentStates[8] > previousStates[8]) {
+      MODE++;
+    }
+    else if (currentStates[8] < previousStates[8]) {
+      MODE--;
+    }
+    MODE = MODE % NUM_MODES;
+    modeBlink(MODE);
+    lastModeChange = millis();
+    updatePreviousStates();
+    return;
+}
