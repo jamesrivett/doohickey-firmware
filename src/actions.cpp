@@ -1,8 +1,8 @@
 #include <HID-Project.h>
-#include "inputs.h"
-#include "actions.h"
-#include "state.h"
-#include "blink.h"
+#include "inputs.hpp"
+#include "actions.hpp"
+#include "state.hpp"
+#include "blink.hpp"
 
 inline void init() {
     Serial.begin(9600);
