@@ -1,3 +1,5 @@
+#pragma once
+
 extern bool SHIFT;
 extern int MODE;
 extern int NUM_MODES;

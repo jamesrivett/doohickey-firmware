@@ -1,3 +1,4 @@
+#pragma once
 #include <Encoder.h>
 
 extern int BUTTON_0;
