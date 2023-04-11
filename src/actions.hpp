@@ -1,21 +1,27 @@
-#pragma once
+void doohickeyInit();
 
-inline void init();
+void BUTTON_0_PRESS();
+void BUTTON_1_PRESS();
+void BUTTON_2_PRESS();
+void BUTTON_ENC_0_PRESS();
+void BUTTON_ENC_1_PRESS();
+void BUTTON_ENC_2_PRESS();
+void BUTTON_ENC_3_PRESS();
+void BUTTON_ENC_3_RELEASE();
 
-inline void BUTTON_0_PRESS();
-inline void BUTTON_1_PRESS();
-inline void BUTTON_2_PRESS();
-inline void BUTTON_ENC_0_PRESS();
-inline void BUTTON_ENC_1_PRESS();
-inline void BUTTON_ENC_2_PRESS();
-inline void BUTTON_ENC_3_PRESS();
-inline void BUTTON_ENC_3_RELEASE();
+void ENC_0_LEFT();
+void ENC_1_LEFT();
+void ENC_2_LEFT();
+void ENC_3_LEFT();
+void ENC_0_RIGHT();
+void ENC_1_RIGHT();
+void ENC_2_RIGHT();
+void ENC_3_RIGHT();
 
-inline void ENC_0_LEFT();
-inline void ENC_1_LEFT();
-inline void ENC_2_LEFT();
-inline void ENC_3_LEFT();
-inline void ENC_0_RIGHT();
-inline void ENC_1_RIGHT();
-inline void ENC_2_RIGHT();
-inline void ENC_3_RIGHT();
+void modeBlink(int mode);
+
+void scrollBlink(int scrolling_speed);
+void doohickeyDebug();
+void updateCurrentStates();
+void updatePreviousStates();
+bool checkForModeChange();
