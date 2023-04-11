@@ -304,12 +304,11 @@ bool checkForModeChange() {
 
 void handleModeChange() {
     if (currentStates[8] > previousStates[8]) {
-      MODE++;
+      MODE = constrain(MODE + 1, 0, NUM_MODES - 1);
     }
     else if (currentStates[8] < previousStates[8]) {
-      MODE--;
+      MODE = constrain(MODE - 1, 0, NUM_MODES - 1);
     }
-    MODE = MODE % NUM_MODES;
     modeBlink(MODE);
     lastModeChange = millis();
     updatePreviousStates();
