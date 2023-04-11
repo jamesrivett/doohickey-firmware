@@ -1,12 +1,8 @@
-#pragma once
-
-bool shift;
-int MODE = 0;
-int NUM_MODES = 3;
-
-int SCROLLING_SPEED = 3; 
-
-long lastModeChange = 0;
-long timeSinceLastModeChange = 0;
-int previousStates[12];
-int currentStates[12];
+extern bool SHIFT;
+extern int MODE;
+extern int NUM_MODES;
+extern int SCROLLING_SPEED;
+extern long lastModeChange;
+extern long timeSinceLastModeChange;
+extern int previousStates[12];
+extern int currentStates[12];
