@@ -214,9 +214,16 @@ void ENC_3_LEFT() {
     Consumer.write(MEDIA_VOL_DOWN);
     break;
   case 2:
-    BootKeyboard.press(KEY_LEFT_CTRL);
-    BootKeyboard.write(HID_KEYBOARD_MINUS_AND_UNDERSCORE);
-    BootKeyboard.releaseAll();
+    if(SHIFT) {
+      BootKeyboard.press(KEY_LEFT_CTRL);
+      BootKeyboard.write(KEY_Z);
+      BootKeyboard.release(KEY_LEFT_CTRL);
+    }
+    else {
+      BootKeyboard.press(KEY_LEFT_CTRL);
+      BootKeyboard.write(HID_KEYBOARD_MINUS_AND_UNDERSCORE);
+      BootKeyboard.releaseAll();
+    }
     break;
   }
 }
@@ -226,9 +233,18 @@ void ENC_3_RIGHT() {
     Consumer.write(MEDIA_VOL_UP);
     break;
   case 2:
-    BootKeyboard.press(KEY_LEFT_CTRL);
-    BootKeyboard.write(HID_KEYBOARD_EQUALS_AND_PLUS);
-    BootKeyboard.releaseAll();
+    if(SHIFT) {
+      BootKeyboard.press(KEY_LEFT_CTRL);
+      BootKeyboard.press(KEY_LEFT_SHIFT);
+      BootKeyboard.write(KEY_Z);
+      BootKeyboard.release(KEY_LEFT_SHIFT);
+      BootKeyboard.release(KEY_LEFT_CTRL);
+    }
+    else {
+      BootKeyboard.press(KEY_LEFT_CTRL);
+      BootKeyboard.write(HID_KEYBOARD_EQUALS_AND_PLUS);
+      BootKeyboard.releaseAll();
+    }
     break;
   }
 }
