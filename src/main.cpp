@@ -4,9 +4,9 @@
 #include "state.hpp"
 
 inline String modeSate_toString(ModeState ms) {
-  if(ms == 0){return "normal";}
-  if(ms == 1){return "lefty";}
-  if(ms == 2){return "photoshop";}
+  if(ms == normal){return "normal";}
+  if(ms == lefty){return "lefty";}
+  if(ms == photoshop){return "photoshop";}
 }
 
 void setup() { 

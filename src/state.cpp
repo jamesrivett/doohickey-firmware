@@ -1,7 +1,6 @@
 #include "state.hpp"
 
 bool SHIFT = false;
-int MODE = 0;
 int NUM_MODES = 3;
 
 int SCROLLING_SPEED = 3; 
