@@ -3,6 +3,12 @@
 #include "actions.hpp"
 #include "state.hpp"
 
+inline String modeSate_toString(ModeState ms) {
+  if(ms == 0){return "normal";}
+  if(ms == 1){return "lefty";}
+  if(ms == 2){return "photoshop";}
+}
+
 void setup() { 
   doohickeyInit();
 }
@@ -104,7 +110,7 @@ void loop() {
   long t1 = micros();
   int delta = t1 - t0;
   Serial.println("delta: " + String(delta) + " microseconds");
-  Serial.println("MODE: " + String(modeState));
+  Serial.println("MODE: " + modeSate_toString(modeState));
 
   delay(10);
 }
