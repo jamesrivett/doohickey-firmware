@@ -11,3 +11,5 @@ long timeSinceLastModeChange = 0;
 
 int currentStates[] = {0,0,0,0,0,0,0,0,0,0,0,0};
 int previousStates[] = {0,0,0,0,0,0,0,0,0,0,0,0};
+
+ModeState modeState;

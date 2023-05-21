@@ -104,7 +104,7 @@ void loop() {
   long t1 = micros();
   int delta = t1 - t0;
   Serial.println("delta: " + String(delta) + " microseconds");
-  Serial.println("MODE: " + String(MODE));
+  Serial.println("MODE: " + String(modeState));
 
   delay(10);
 }
