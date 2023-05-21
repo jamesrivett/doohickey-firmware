@@ -48,7 +48,7 @@ void BUTTON_2_PRESS() {
 }
 
 void BUTTON_ENC_0_PRESS() {
-  switch (MODE) {
+  switch (modeState) {
   case 0:
     Consumer.write(MEDIA_VOL_MUTE);
     break;
@@ -68,7 +68,7 @@ void BUTTON_ENC_0_PRESS() {
 }
 
 void BUTTON_ENC_1_PRESS() {
-  switch (MODE) {
+  switch (modeState) {
   case 0:
     BootKeyboard.write(KEY_ENTER);
     break;
@@ -76,7 +76,7 @@ void BUTTON_ENC_1_PRESS() {
 }
 
 void BUTTON_ENC_2_PRESS() {
-  switch (MODE) {
+  switch (modeState) {
   case 1:
     BootKeyboard.write(KEY_ENTER);
     break;
@@ -84,7 +84,7 @@ void BUTTON_ENC_2_PRESS() {
 }
 
 void BUTTON_ENC_3_PRESS() {
-  switch (MODE) {
+  switch (modeState) {
   case 0:
     if (SHIFT) {
       BootKeyboard.press(KEY_RIGHT_ALT);
@@ -107,14 +107,14 @@ void BUTTON_ENC_3_PRESS() {
 }
 
 void BUTTON_ENC_3_RELEASE() {
-  switch (MODE) {
+  switch (modeState) {
   case 2:
     BootKeyboard.release(KEY_SPACE);
   }
 }
 
 void ENC_0_LEFT() {
-  switch (MODE) {
+  switch (modeState) {
   case 0:
     Consumer.write(MEDIA_VOL_DOWN);
     break;
@@ -124,7 +124,7 @@ void ENC_0_LEFT() {
   }
 }
 void ENC_0_RIGHT() {
-  switch (MODE) {
+  switch (modeState) {
   case 0:
     Consumer.write(MEDIA_VOL_UP);
     break;
@@ -135,7 +135,7 @@ void ENC_0_RIGHT() {
 }
 
 void ENC_1_LEFT() {
-  switch (MODE) {
+  switch (modeState) {
   case 0:
     if (SHIFT) {
       SCROLLING_SPEED = constrain(SCROLLING_SPEED - 1, 1, 5);
@@ -153,7 +153,7 @@ void ENC_1_LEFT() {
   }
 }
 void ENC_1_RIGHT() {
-  switch (MODE) {
+  switch (modeState) {
   case 0:
     if (SHIFT) {
       SCROLLING_SPEED = constrain(SCROLLING_SPEED + 1, 1, 5);
@@ -172,7 +172,7 @@ void ENC_1_RIGHT() {
 }
 
 void ENC_2_LEFT() {
-  switch (MODE) {
+  switch (modeState) {
   case 0:
     BootKeyboard.write(KEY_LEFT_ARROW);
     break;
@@ -190,7 +190,7 @@ void ENC_2_LEFT() {
   }
 }
 void ENC_2_RIGHT() {
-  switch (MODE) {
+  switch (modeState) {
   case 0:
     BootKeyboard.write(KEY_RIGHT_ARROW);
     break;
@@ -209,7 +209,7 @@ void ENC_2_RIGHT() {
 }
 
 void ENC_3_LEFT() {
-  switch (MODE) {
+  switch (modeState) {
   case 1:
     Consumer.write(MEDIA_VOL_DOWN);
     break;
@@ -228,7 +228,7 @@ void ENC_3_LEFT() {
   }
 }
 void ENC_3_RIGHT() {
-  switch (MODE) {
+  switch (modeState) {
   case 1:
     Consumer.write(MEDIA_VOL_UP);
     break;
@@ -319,12 +319,12 @@ bool checkForModeChange() {
 
 void handleModeChange() {
   if (currentStates[8] > previousStates[8]) {
-    MODE = constrain(MODE + 1, 0, NUM_MODES - 1);
+    modeState = ModeState(constrain(modeState + 1, 0, NUM_MODES - 1));
   }
   else if (currentStates[8] < previousStates[8]) {
-    MODE = constrain(MODE - 1, 0, NUM_MODES - 1);
+    modeState = ModeState(constrain(modeState - 1, 0, NUM_MODES - 1));
   }
-  modeBlink(MODE);
+  modeBlink(modeState);
   lastModeChange = millis();
   updatePreviousStates();
   return;
