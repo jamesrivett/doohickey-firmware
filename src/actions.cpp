@@ -49,10 +49,10 @@ void BUTTON_2_PRESS() {
 
 void BUTTON_ENC_0_PRESS() {
   switch (modeState) {
-  case 0:
+  case normal:
     Consumer.write(MEDIA_VOL_MUTE);
     break;
-  case 1:
+  case lefty:
     if (SHIFT) {
       BootKeyboard.press(KEY_RIGHT_ALT);
       BootKeyboard.write(KEY_RIGHT_BRACE);
@@ -69,7 +69,7 @@ void BUTTON_ENC_0_PRESS() {
 
 void BUTTON_ENC_1_PRESS() {
   switch (modeState) {
-  case 0:
+  case normal:
     BootKeyboard.write(KEY_ENTER);
     break;
   }
@@ -77,7 +77,7 @@ void BUTTON_ENC_1_PRESS() {
 
 void BUTTON_ENC_2_PRESS() {
   switch (modeState) {
-  case 1:
+  case lefty:
     BootKeyboard.write(KEY_ENTER);
     break;
   }
@@ -85,7 +85,7 @@ void BUTTON_ENC_2_PRESS() {
 
 void BUTTON_ENC_3_PRESS() {
   switch (modeState) {
-  case 0:
+  case normal:
     if (SHIFT) {
       BootKeyboard.press(KEY_RIGHT_ALT);
       BootKeyboard.write(KEY_RIGHT_BRACE);
@@ -97,10 +97,10 @@ void BUTTON_ENC_3_PRESS() {
       BootKeyboard.release(KEY_RIGHT_ALT);
     }
     break;
-  case 1:
+  case lefty:
     Consumer.write(MEDIA_VOL_MUTE);
     break;
-  case 2:
+  case photoshop:
     BootKeyboard.press(KEY_SPACE);
     break;
   }
@@ -108,27 +108,27 @@ void BUTTON_ENC_3_PRESS() {
 
 void BUTTON_ENC_3_RELEASE() {
   switch (modeState) {
-  case 2:
+  case photoshop:
     BootKeyboard.release(KEY_SPACE);
   }
 }
 
 void ENC_0_LEFT() {
   switch (modeState) {
-  case 0:
+  case normal:
     Consumer.write(MEDIA_VOL_DOWN);
     break;
-  case 2:
+  case photoshop:
     BootKeyboard.write(KEY_LEFT_BRACE);
     break;
   }
 }
 void ENC_0_RIGHT() {
   switch (modeState) {
-  case 0:
+  case normal:
     Consumer.write(MEDIA_VOL_UP);
     break;
-  case 2:
+  case photoshop:
     BootKeyboard.write(KEY_RIGHT_BRACE);
     break;
   }
@@ -136,7 +136,7 @@ void ENC_0_RIGHT() {
 
 void ENC_1_LEFT() {
   switch (modeState) {
-  case 0:
+  case normal:
     if (SHIFT) {
       SCROLLING_SPEED = constrain(SCROLLING_SPEED - 1, 1, 5);
       scrollBlink(SCROLLING_SPEED);
@@ -147,14 +147,14 @@ void ENC_1_LEFT() {
       }
     }
     break;
-  case 1:
+  case lefty:
     BootKeyboard.write(KEY_LEFT_ARROW);
     break;
   }
 }
 void ENC_1_RIGHT() {
   switch (modeState) {
-  case 0:
+  case normal:
     if (SHIFT) {
       SCROLLING_SPEED = constrain(SCROLLING_SPEED + 1, 1, 5);
       scrollBlink(SCROLLING_SPEED);
@@ -165,7 +165,7 @@ void ENC_1_RIGHT() {
       }
     }
     break;
-  case 1:
+  case lefty:
     BootKeyboard.write(KEY_RIGHT_ARROW);
     break;
   }
@@ -173,10 +173,10 @@ void ENC_1_RIGHT() {
 
 void ENC_2_LEFT() {
   switch (modeState) {
-  case 0:
+  case normal:
     BootKeyboard.write(KEY_LEFT_ARROW);
     break;
-  case 1:
+  case lefty:
     if (SHIFT) {
       SCROLLING_SPEED = constrain(SCROLLING_SPEED - 1, 1, 5);
       scrollBlink(SCROLLING_SPEED);
@@ -191,10 +191,10 @@ void ENC_2_LEFT() {
 }
 void ENC_2_RIGHT() {
   switch (modeState) {
-  case 0:
+  case normal:
     BootKeyboard.write(KEY_RIGHT_ARROW);
     break;
-  case 1:
+  case lefty:
     if (SHIFT) {
       SCROLLING_SPEED = constrain(SCROLLING_SPEED + 1, 1, 5);
       scrollBlink(SCROLLING_SPEED);
@@ -210,10 +210,10 @@ void ENC_2_RIGHT() {
 
 void ENC_3_LEFT() {
   switch (modeState) {
-  case 1:
+  case lefty:
     Consumer.write(MEDIA_VOL_DOWN);
     break;
-  case 2:
+  case photoshop:
     if(SHIFT) {
       BootKeyboard.press(KEY_LEFT_CTRL);
       BootKeyboard.write(KEY_Z);
@@ -229,10 +229,10 @@ void ENC_3_LEFT() {
 }
 void ENC_3_RIGHT() {
   switch (modeState) {
-  case 1:
+  case lefty:
     Consumer.write(MEDIA_VOL_UP);
     break;
-  case 2:
+  case photoshop:
     if(SHIFT) {
       BootKeyboard.press(KEY_LEFT_CTRL);
       BootKeyboard.press(KEY_LEFT_SHIFT);
