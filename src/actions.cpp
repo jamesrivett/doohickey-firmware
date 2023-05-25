@@ -49,203 +49,229 @@ void BUTTON_2_PRESS() {
 
 void BUTTON_ENC_0_PRESS() {
   switch (modeState) {
-  case normal:
-    Consumer.write(MEDIA_VOL_MUTE);
-    break;
-  case lefty:
-    if (SHIFT) {
-      BootKeyboard.press(KEY_RIGHT_ALT);
-      BootKeyboard.write(KEY_RIGHT_BRACE);
-      BootKeyboard.release(KEY_RIGHT_ALT);
-    }
-    else {
-      BootKeyboard.press(KEY_RIGHT_ALT);
-      BootKeyboard.write(KEY_LEFT_BRACE);
-      BootKeyboard.release(KEY_RIGHT_ALT);
-    }
-    break;
+    case normal:
+      Consumer.write(MEDIA_VOL_MUTE);
+      break;
+    case lefty:
+      if (SHIFT) {
+        BootKeyboard.press(KEY_RIGHT_ALT);
+        BootKeyboard.write(KEY_RIGHT_BRACE);
+        BootKeyboard.release(KEY_RIGHT_ALT);
+      }
+      else {
+        BootKeyboard.press(KEY_RIGHT_ALT);
+        BootKeyboard.write(KEY_LEFT_BRACE);
+        BootKeyboard.release(KEY_RIGHT_ALT);
+      }
+      break;
+    default:
+      break;
   }
 }
 
 void BUTTON_ENC_1_PRESS() {
   switch (modeState) {
-  case normal:
-    BootKeyboard.write(KEY_ENTER);
-    break;
+    case normal:
+      BootKeyboard.write(KEY_ENTER);
+      break;
+    default:
+      break;
   }
 }
 
 void BUTTON_ENC_2_PRESS() {
   switch (modeState) {
-  case lefty:
-    BootKeyboard.write(KEY_ENTER);
-    break;
+    case lefty:
+      BootKeyboard.write(KEY_ENTER);
+      break;
+    default:
+      break;
   }
 }
 
 void BUTTON_ENC_3_PRESS() {
   switch (modeState) {
-  case normal:
-    if (SHIFT) {
-      BootKeyboard.press(KEY_RIGHT_ALT);
-      BootKeyboard.write(KEY_RIGHT_BRACE);
-      BootKeyboard.release(KEY_RIGHT_ALT);
-    }
-    else {
-      BootKeyboard.press(KEY_RIGHT_ALT);
-      BootKeyboard.write(KEY_LEFT_BRACE);
-      BootKeyboard.release(KEY_RIGHT_ALT);
-    }
-    break;
-  case lefty:
-    Consumer.write(MEDIA_VOL_MUTE);
-    break;
-  case photoshop:
-    BootKeyboard.press(KEY_SPACE);
-    break;
+    case normal:
+      if (SHIFT) {
+        BootKeyboard.press(KEY_RIGHT_ALT);
+        BootKeyboard.write(KEY_RIGHT_BRACE);
+        BootKeyboard.release(KEY_RIGHT_ALT);
+      }
+      else {
+        BootKeyboard.press(KEY_RIGHT_ALT);
+        BootKeyboard.write(KEY_LEFT_BRACE);
+        BootKeyboard.release(KEY_RIGHT_ALT);
+      }
+      break;
+    case lefty:
+      Consumer.write(MEDIA_VOL_MUTE);
+      break;
+    case photoshop:
+      BootKeyboard.press(KEY_SPACE);
+      break;
+    default:
+      break;
   }
 }
 
 void BUTTON_ENC_3_RELEASE() {
   switch (modeState) {
-  case photoshop:
-    BootKeyboard.release(KEY_SPACE);
+    case photoshop:
+      BootKeyboard.release(KEY_SPACE);
+    default:
+      break;
   }
 }
 
 void ENC_0_LEFT() {
   switch (modeState) {
-  case normal:
-    Consumer.write(MEDIA_VOL_DOWN);
-    break;
-  case photoshop:
-    BootKeyboard.write(KEY_LEFT_BRACE);
-    break;
+    case normal:
+      Consumer.write(MEDIA_VOL_DOWN);
+      break;
+    case photoshop:
+      BootKeyboard.write(KEY_LEFT_BRACE);
+      break;
+    default:
+      break;
   }
 }
 void ENC_0_RIGHT() {
   switch (modeState) {
-  case normal:
-    Consumer.write(MEDIA_VOL_UP);
-    break;
-  case photoshop:
-    BootKeyboard.write(KEY_RIGHT_BRACE);
-    break;
+    case normal:
+      Consumer.write(MEDIA_VOL_UP);
+      break;
+    case photoshop:
+      BootKeyboard.write(KEY_RIGHT_BRACE);
+      break;
+    default:
+      break;
   }
 }
 
 void ENC_1_LEFT() {
   switch (modeState) {
-  case normal:
-    if (SHIFT) {
-      SCROLLING_SPEED = constrain(SCROLLING_SPEED - 1, 1, 5);
-      scrollBlink(SCROLLING_SPEED);
-    }
-    else {
-      for (int i = 0; i < SCROLLING_SPEED; i++) {
-        BootKeyboard.write(KEY_DOWN_ARROW);
+    case normal:
+      if (SHIFT) {
+        SCROLLING_SPEED = constrain(SCROLLING_SPEED - 1, 1, 5);
+        scrollBlink(SCROLLING_SPEED);
       }
-    }
-    break;
-  case lefty:
-    BootKeyboard.write(KEY_LEFT_ARROW);
-    break;
+      else {
+        for (int i = 0; i < SCROLLING_SPEED; i++) {
+          BootKeyboard.write(KEY_DOWN_ARROW);
+        }
+      }
+      break;
+    case lefty:
+      BootKeyboard.write(KEY_LEFT_ARROW);
+      break;
+    default:
+      break;
   }
 }
 void ENC_1_RIGHT() {
   switch (modeState) {
-  case normal:
-    if (SHIFT) {
-      SCROLLING_SPEED = constrain(SCROLLING_SPEED + 1, 1, 5);
-      scrollBlink(SCROLLING_SPEED);
-    }
-    else {
-      for (int i = 0; i < SCROLLING_SPEED; i++) {
-        BootKeyboard.write(KEY_UP_ARROW);
+    case normal:
+      if (SHIFT) {
+        SCROLLING_SPEED = constrain(SCROLLING_SPEED + 1, 1, 5);
+        scrollBlink(SCROLLING_SPEED);
       }
-    }
-    break;
-  case lefty:
-    BootKeyboard.write(KEY_RIGHT_ARROW);
-    break;
+      else {
+        for (int i = 0; i < SCROLLING_SPEED; i++) {
+          BootKeyboard.write(KEY_UP_ARROW);
+        }
+      }
+      break;
+    case lefty:
+      BootKeyboard.write(KEY_RIGHT_ARROW);
+      break;
+    default:
+      break;
   }
 }
 
 void ENC_2_LEFT() {
   switch (modeState) {
-  case normal:
-    BootKeyboard.write(KEY_LEFT_ARROW);
-    break;
-  case lefty:
-    if (SHIFT) {
-      SCROLLING_SPEED = constrain(SCROLLING_SPEED - 1, 1, 5);
-      scrollBlink(SCROLLING_SPEED);
-    }
-    else {
-      for (int i = 0; i < SCROLLING_SPEED; i++) {
-        BootKeyboard.write(KEY_DOWN_ARROW);
+    case normal:
+      BootKeyboard.write(KEY_LEFT_ARROW);
+      break;
+    case lefty:
+      if (SHIFT) {
+        SCROLLING_SPEED = constrain(SCROLLING_SPEED - 1, 1, 5);
+        scrollBlink(SCROLLING_SPEED);
       }
-    }
-    break;
+      else {
+        for (int i = 0; i < SCROLLING_SPEED; i++) {
+          BootKeyboard.write(KEY_DOWN_ARROW);
+        }
+      }
+      break;
+    default:
+      break;
   }
 }
 void ENC_2_RIGHT() {
   switch (modeState) {
-  case normal:
-    BootKeyboard.write(KEY_RIGHT_ARROW);
-    break;
-  case lefty:
-    if (SHIFT) {
-      SCROLLING_SPEED = constrain(SCROLLING_SPEED + 1, 1, 5);
-      scrollBlink(SCROLLING_SPEED);
-    }
-    else {
-      for (int i = 0; i < SCROLLING_SPEED; i++) {
-        BootKeyboard.write(KEY_UP_ARROW);
+    case normal:
+      BootKeyboard.write(KEY_RIGHT_ARROW);
+      break;
+    case lefty:
+      if (SHIFT) {
+        SCROLLING_SPEED = constrain(SCROLLING_SPEED + 1, 1, 5);
+        scrollBlink(SCROLLING_SPEED);
       }
-    }
-    break;
+      else {
+        for (int i = 0; i < SCROLLING_SPEED; i++) {
+          BootKeyboard.write(KEY_UP_ARROW);
+        }
+      }
+      break;
+    default:
+      break;
   }
 }
 
 void ENC_3_LEFT() {
   switch (modeState) {
-  case lefty:
-    Consumer.write(MEDIA_VOL_DOWN);
-    break;
-  case photoshop:
-    if(SHIFT) {
-      BootKeyboard.press(KEY_LEFT_CTRL);
-      BootKeyboard.write(KEY_Z);
-      BootKeyboard.release(KEY_LEFT_CTRL);
-    }
-    else {
-      BootKeyboard.press(KEY_LEFT_CTRL);
-      BootKeyboard.write(HID_KEYBOARD_MINUS_AND_UNDERSCORE);
-      BootKeyboard.releaseAll();
-    }
-    break;
+    case lefty:
+      Consumer.write(MEDIA_VOL_DOWN);
+      break;
+    case photoshop:
+      if(SHIFT) {
+        BootKeyboard.press(KEY_LEFT_CTRL);
+        BootKeyboard.write(KEY_Z);
+        BootKeyboard.release(KEY_LEFT_CTRL);
+      }
+      else {
+        BootKeyboard.press(KEY_LEFT_CTRL);
+        BootKeyboard.write(HID_KEYBOARD_MINUS_AND_UNDERSCORE);
+        BootKeyboard.releaseAll();
+      }
+      break;
+    default:
+      break;
   }
 }
 void ENC_3_RIGHT() {
   switch (modeState) {
-  case lefty:
-    Consumer.write(MEDIA_VOL_UP);
-    break;
-  case photoshop:
-    if(SHIFT) {
-      BootKeyboard.press(KEY_LEFT_CTRL);
-      BootKeyboard.press(KEY_LEFT_SHIFT);
-      BootKeyboard.write(KEY_Z);
-      BootKeyboard.release(KEY_LEFT_SHIFT);
-      BootKeyboard.release(KEY_LEFT_CTRL);
-    }
-    else {
-      BootKeyboard.press(KEY_LEFT_CTRL);
-      BootKeyboard.write(HID_KEYBOARD_EQUALS_AND_PLUS);
-      BootKeyboard.releaseAll();
-    }
-    break;
+    case lefty:
+      Consumer.write(MEDIA_VOL_UP);
+      break;
+    case photoshop:
+      if(SHIFT) {
+        BootKeyboard.press(KEY_LEFT_CTRL);
+        BootKeyboard.press(KEY_LEFT_SHIFT);
+        BootKeyboard.write(KEY_Z);
+        BootKeyboard.release(KEY_LEFT_SHIFT);
+        BootKeyboard.release(KEY_LEFT_CTRL);
+      }
+      else {
+        BootKeyboard.press(KEY_LEFT_CTRL);
+        BootKeyboard.write(HID_KEYBOARD_EQUALS_AND_PLUS);
+        BootKeyboard.releaseAll();
+      }
+      break;
+    default:
+      break;
   }
 }
 
