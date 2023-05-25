@@ -111,6 +111,6 @@ void loop() {
   int delta = t1 - t0;
   Serial.println("delta: " + String(delta) + " microseconds");
   Serial.println("MODE: " + modeSate_toString(modeState));
-
+  
   delayMicroseconds(10000 - delta);
 }

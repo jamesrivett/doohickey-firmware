@@ -300,10 +300,12 @@ void updateCurrentStates() {
   currentStates[5] = !digitalRead(ENC_1_BUTTON);
   currentStates[6] = !digitalRead(ENC_2_BUTTON);
   currentStates[7] = !digitalRead(ENC_3_BUTTON);
+  noInterrupts();
   currentStates[8] = (-1 * ENC_0.read()) / 4;
   currentStates[9] = (-1 * ENC_1.read()) / 4;
   currentStates[10] = ENC_2.read() / 4;
   currentStates[11] = ENC_3.read() / 4;
+  interrupts();
 }
 
 void updatePreviousStates() {
