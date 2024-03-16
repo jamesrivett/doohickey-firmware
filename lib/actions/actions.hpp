@@ -23,7 +23,3 @@ void modeBlink(int mode);
 
 void scrollBlink(int scrolling_speed);
 void doohickeyDebug();
-void updateCurrentStates();
-void updatePreviousStates();
-bool checkForModeChange();
-void handleModeChange();

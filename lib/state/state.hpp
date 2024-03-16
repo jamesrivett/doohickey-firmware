@@ -14,3 +14,8 @@ extern long lastModeChange;
 extern long timeSinceLastModeChange;
 extern int previousStates[12];
 extern int currentStates[12];
+
+void updateCurrentStates();
+void updatePreviousStates();
+bool checkForModeChange();
+void handleModeChange();
