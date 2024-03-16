@@ -12,32 +12,56 @@ int SCROLLING_SPEED = 3;
 long lastModeChange = 0;
 long timeSinceLastModeChange = 0;
 
-int currentStates[] = {0,0,0,0,0,0,0,0,0,0,0,0};
-int previousStates[] = {0,0,0,0,0,0,0,0,0,0,0,0};
-
 ModeState modeState;
 
+struct InputStates {
+  bool state_BUTTON_0;
+  bool state_BUTTON_1;
+  bool state_BUTTON_2;
+  bool state_BUTTON_3;
+  bool state_ENC_0_BUTTON;
+  bool state_ENC_1_BUTTON;
+  bool state_ENC_2_BUTTON;
+  bool state_ENC_3_BUTTON;
+  int state_ENC_0;
+  int state_ENC_1;
+  int state_ENC_2;
+  int state_ENC_3;
+};
+
+InputStates currentStates;
+InputStates previousStates;
+
 void updateCurrentStates() {
-  currentStates[0] = digitalRead(BUTTON_0);
-  currentStates[1] = digitalRead(BUTTON_1);
-  currentStates[2] = digitalRead(BUTTON_2);
-  currentStates[3] = digitalRead(BUTTON_3);
-  currentStates[4] = !digitalRead(ENC_0_BUTTON);
-  currentStates[5] = !digitalRead(ENC_1_BUTTON);
-  currentStates[6] = !digitalRead(ENC_2_BUTTON);
-  currentStates[7] = !digitalRead(ENC_3_BUTTON);
+  currentStates.state_BUTTON_0 = digitalRead(BUTTON_0);
+  currentStates.state_BUTTON_1 = digitalRead(BUTTON_1);
+  currentStates.state_BUTTON_2 = digitalRead(BUTTON_2);
+  currentStates.state_BUTTON_3 = digitalRead(BUTTON_3);
+  currentStates.state_ENC_0_BUTTON = !digitalRead(ENC_0_BUTTON);
+  currentStates.state_ENC_1_BUTTON = !digitalRead(ENC_1_BUTTON);
+  currentStates.state_ENC_2_BUTTON = !digitalRead(ENC_2_BUTTON);
+  currentStates.state_ENC_3_BUTTON = !digitalRead(ENC_3_BUTTON);
   noInterrupts();
-  currentStates[8] = (-1 * ENC_0.read()) / 4;
-  currentStates[9] = (-1 * ENC_1.read()) / 4;
-  currentStates[10] = ENC_2.read() / 4;
-  currentStates[11] = ENC_3.read() / 4;
+  currentStates.state_ENC_0 = (-1 * ENC_0.read()) / 4;
+  currentStates.state_ENC_1 = (-1 * ENC_1.read()) / 4;
+  currentStates.state_ENC_2 = ENC_2.read() / 4;
+  currentStates.state_ENC_3 = ENC_3.read() / 4;
   interrupts();
 }
 
 void updatePreviousStates() {
-  for (int i = 0; i < sizeof(currentStates) / sizeof(int); i++) {
-    previousStates[i] = currentStates[i];
-  }
+  currentStates.state_BUTTON_0 = previousStates.state_BUTTON_0;
+  currentStates.state_BUTTON_1 = previousStates.state_BUTTON_1;
+  currentStates.state_BUTTON_2 = previousStates.state_BUTTON_2;
+  currentStates.state_BUTTON_3 = previousStates.state_BUTTON_3;
+  currentStates.state_ENC_0_BUTTON = previousStates.state_ENC_0_BUTTON;
+  currentStates.state_ENC_1_BUTTON = previousStates.state_ENC_1_BUTTON;
+  currentStates.state_ENC_2_BUTTON = previousStates.state_ENC_2_BUTTON;
+  currentStates.state_ENC_3_BUTTON = previousStates.state_ENC_3_BUTTON;
+  currentStates.state_ENC_0 = previousStates.state_ENC_0;
+  currentStates.state_ENC_1 = previousStates.state_ENC_1;
+  currentStates.state_ENC_2 = previousStates.state_ENC_2;
+  currentStates.state_ENC_3 = previousStates.state_ENC_3;
 }
 
 bool checkForModeChange() {
