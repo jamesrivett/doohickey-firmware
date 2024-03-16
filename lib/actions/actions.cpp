@@ -303,16 +303,16 @@ void scrollBlink(int scrolling_speed) {
 }
 
 void doohickeyDebug() {
-  Serial.println("button0: " + String(currentStates[0]));
-  Serial.println("button1: " + String(currentStates[1]));
-  Serial.println("button2: " + String(currentStates[2]));
-  Serial.println("button3: " + String(currentStates[3]));
-  Serial.println("enc_button0: " + String(currentStates[4]));
-  Serial.println("enc_button1: " + String(currentStates[5]));
-  Serial.println("enc_button2: " + String(currentStates[6]));
-  Serial.println("enc_button3: " + String(currentStates[7]));
-  Serial.println("enc_0: " + String(currentStates[8]));
-  Serial.println("enc_1: " + String(currentStates[9]));
-  Serial.println("enc_2: " + String(currentStates[10]));
-  Serial.println("enc_3: " + String(currentStates[11]));
+  Serial.println("button0: " + String(currentStates.BUTTON_0));
+  Serial.println("button1: " + String(currentStates.BUTTON_1));
+  Serial.println("button2: " + String(currentStates.BUTTON_2));
+  Serial.println("button3: " + String(currentStates.BUTTON_3));
+  Serial.println("enc_button0: " + String(currentStates.ENC_0_BUTTON));
+  Serial.println("enc_button1: " + String(currentStates.ENC_1_BUTTON));
+  Serial.println("enc_button2: " + String(currentStates.ENC_2_BUTTON));
+  Serial.println("enc_button3: " + String(currentStates.ENC_3_BUTTON));
+  Serial.println("enc_0: " + String(currentStates.ENC_0));
+  Serial.println("enc_1: " + String(currentStates.ENC_1));
+  Serial.println("enc_2: " + String(currentStates.ENC_2));
+  Serial.println("enc_3: " + String(currentStates.ENC_3));
 }
