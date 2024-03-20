@@ -1,8 +1,8 @@
 #include <Arduino.h>
 
-#include "state.hpp"
-#include "actions.hpp"
-#include "inputs.hpp"
+#include "state.h"
+#include "actions.h"
+#include "inputs.h"
 
 bool SHIFT = false;
 int NUM_MODES = 3;
