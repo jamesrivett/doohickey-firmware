@@ -1,7 +1,7 @@
 #include <Arduino.h>
 
-#include "actions.hpp"
-#include "state.hpp"
+#include "actions.h"
+#include "state.h"
 
 inline String modeSate_toString(ModeState ms) {
   if(ms == normal){return "normal";}

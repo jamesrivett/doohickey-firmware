@@ -2,9 +2,9 @@
 #include <HID-Project.h>
 #include <Encoder.h>
 
-#include "inputs.hpp"
-#include "actions.hpp"
-#include "state.hpp"
+#include "inputs.h"
+#include "actions.h"
+#include "state.h"
 
 void doohickeyInit() {
   Serial.begin(9600);
