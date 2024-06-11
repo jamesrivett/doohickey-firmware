@@ -6,7 +6,7 @@ enum ModeState {
     photoshop = 2
 };
 
-struct InputStates {
+struct InputStateFrame {
   bool BUTTON_0;
   bool BUTTON_1;
   bool BUTTON_2;
@@ -27,10 +27,10 @@ extern int NUM_MODES;
 extern int SCROLLING_SPEED;
 extern long lastModeChange;
 extern long timeSinceLastModeChange;
-extern InputStates previousStates;
-extern InputStates currentStates;
+extern InputStateFrame previousStates;
+extern InputStateFrame currentStates;
 
-void updateCurrentStates();
-void updatePreviousStates();
+void captureInputStateFrame(InputStateFrame*);
+void copyInputStateFrame(InputStateFrame*, InputStateFrame*);
 bool checkForModeChange();
 void handleModeChange();
