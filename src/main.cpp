@@ -15,7 +15,7 @@ void setup() {
 
 void loop() {
   long t0 = micros();
-  updateCurrentStates();
+  captureInputStateFrame(&currentStates);
 
   // MODE CHANGE CHECK
   if (checkForModeChange()) {
@@ -105,7 +105,7 @@ void loop() {
     ENC_3_RIGHT();
   }
 
-  updatePreviousStates();
+  copyInputStateFrame(&previousStates, &currentStates);
 
   long t1 = micros();
   int delta = t1 - t0;
