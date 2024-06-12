@@ -17,20 +17,20 @@ ModeState modeState;
 InputStateFrame currentStates;
 InputStateFrame previousStates;
 
-void captureInputStateFrame(InputStateFrame* capturedState) {
-  capturedState->BUTTON_0 = digitalRead(BUTTON_0);
-  capturedState->BUTTON_1 = digitalRead(BUTTON_1);
-  capturedState->BUTTON_2 = digitalRead(BUTTON_2);
-  capturedState->BUTTON_3 = digitalRead(BUTTON_3);
-  capturedState->ENC_0_BUTTON = !digitalRead(ENC_0_BUTTON);
-  capturedState->ENC_1_BUTTON = !digitalRead(ENC_1_BUTTON);
-  capturedState->ENC_2_BUTTON = !digitalRead(ENC_2_BUTTON);
-  capturedState->ENC_3_BUTTON = !digitalRead(ENC_3_BUTTON);
+void captureInputStateFrame(InputStateFrame* frame) {
+  frame->BUTTON_0 = digitalRead(BUTTON_0);
+  frame->BUTTON_1 = digitalRead(BUTTON_1);
+  frame->BUTTON_2 = digitalRead(BUTTON_2);
+  frame->BUTTON_3 = digitalRead(BUTTON_3);
+  frame->ENC_0_BUTTON = !digitalRead(ENC_0_BUTTON);
+  frame->ENC_1_BUTTON = !digitalRead(ENC_1_BUTTON);
+  frame->ENC_2_BUTTON = !digitalRead(ENC_2_BUTTON);
+  frame->ENC_3_BUTTON = !digitalRead(ENC_3_BUTTON);
   noInterrupts();
-  capturedState->ENC_0 = (-1 * ENC_0.read()) / 4;
-  capturedState->ENC_1 = (-1 * ENC_1.read()) / 4;
-  capturedState->ENC_2 = ENC_2.read() / 4;
-  capturedState->ENC_3 = ENC_3.read() / 4;
+  frame->ENC_0 = (-1 * ENC_0.read()) / 4;
+  frame->ENC_1 = (-1 * ENC_1.read()) / 4;
+  frame->ENC_2 = ENC_2.read() / 4;
+  frame->ENC_3 = ENC_3.read() / 4;
   interrupts();
 }
 
