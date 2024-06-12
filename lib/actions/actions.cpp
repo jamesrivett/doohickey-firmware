@@ -2,7 +2,7 @@
 #include <HID-Project.h>
 #include <Encoder.h>
 
-#include "inputs.h"
+#include "inputs.hpp"
 #include "actions.h"
 #include "state.h"
 
