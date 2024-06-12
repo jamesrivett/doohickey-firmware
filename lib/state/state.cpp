@@ -1,7 +1,6 @@
 #include <Arduino.h>
 
 #include "state.h"
-#include "actions.h"
 #include "inputs.h"
 
 bool SHIFT = false;
