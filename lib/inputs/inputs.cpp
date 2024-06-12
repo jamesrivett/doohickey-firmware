@@ -1,5 +1,5 @@
 #include <Encoder.h>
-#include "inputs.h"
+#include "inputs.hpp"
 
 int BUTTON_0 = 15;
 int BUTTON_1 = 14;
