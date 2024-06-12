@@ -22,7 +22,7 @@ void loop() {
     handleModeChange();
   }
 
-  // SHIFT CHECSHIFTK
+  // SHIFT CHECK
   if(currentStates.BUTTON_3) {SHIFT = true;} else {SHIFT = false;}
 
   // BUTTON_0
