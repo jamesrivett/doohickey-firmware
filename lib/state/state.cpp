@@ -5,14 +5,8 @@
 #include "inputs.h"
 
 bool SHIFT = false;
-int NUM_MODES = 3;
 
 int SCROLLING_SPEED = 3; 
-
-long lastModeChange = 0;
-long timeSinceLastModeChange = 0;
-
-ModeState modeState;
 
 InputStateFrame currentStates;
 InputStateFrame previousStates;
@@ -47,22 +41,4 @@ void copyInputStateFrame(InputStateFrame* targetFrame, InputStateFrame* sourceFr
   targetFrame->ENC_1 = sourceFrame->ENC_1;
   targetFrame->ENC_2 = sourceFrame->ENC_2;
   targetFrame->ENC_3 = sourceFrame->ENC_3;
-}
-
-bool checkForModeChange() {
-  timeSinceLastModeChange = millis() - lastModeChange;
-  return currentStates.BUTTON_3 && currentStates.ENC_0 != previousStates.ENC_0 && timeSinceLastModeChange > 300;
-}
-
-void handleModeChange() {
-  if (currentStates.ENC_0 > previousStates.ENC_0) {
-    modeState = ModeState(constrain(modeState + 1, 0, NUM_MODES - 1));
-  }
-  else if (currentStates.ENC_0 < previousStates.ENC_0) {
-    modeState = ModeState(constrain(modeState - 1, 0, NUM_MODES - 1));
-  }
-  modeBlink(modeState);
-  lastModeChange = millis();
-  copyInputStateFrame(&previousStates, &currentStates);
-  return;
 }

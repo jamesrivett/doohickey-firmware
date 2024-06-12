@@ -3,12 +3,6 @@
 #include "actions.h"
 #include "state.h"
 
-inline String modeSate_toString(ModeState ms) {
-  if(ms == normal){return "normal";}
-  if(ms == lefty){return "lefty";}
-  if(ms == photoshop){return "photoshop";}
-}
-
 void setup() { 
   doohickeyInit();
 }
@@ -16,11 +10,6 @@ void setup() {
 void loop() {
   long t0 = micros();
   captureInputStateFrame(&currentStates);
-
-  // MODE CHANGE CHECK
-  if (checkForModeChange()) {
-    handleModeChange();
-  }
 
   // SHIFT CHECK
   if(currentStates.BUTTON_3) {SHIFT = true;} else {SHIFT = false;}
@@ -111,7 +100,6 @@ void loop() {
   int delta = t1 - t0;
   float deltaMillis = float(delta) / 1000;
   Serial.println("delta: " + String(deltaMillis) + " miliseconds");
-  Serial.println("MODE: " + modeSate_toString(modeState));
   
   delayMicroseconds(10000 - delta);
 }
