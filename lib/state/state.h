@@ -23,4 +23,4 @@ extern InputStateFrame previousStates;
 extern InputStateFrame currentStates;
 
 void captureInputStateFrame(InputStateFrame*);
-void copyInputStateFrame(InputStateFrame*, InputStateFrame*);
+void copyInputStateFrame(InputStateFrame* targetFrame, InputStateFrame* sourceFrame);
