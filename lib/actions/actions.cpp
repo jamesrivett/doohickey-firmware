@@ -72,8 +72,6 @@ void BUTTON_ENC_3_PRESS() {
       }
 }
 
-void BUTTON_ENC_3_RELEASE() {
-}
 
 void ENC_0_LEFT() {
   Consumer.write(MEDIA_VOL_DOWN);
