@@ -8,7 +8,6 @@ void BUTTON_ENC_0_PRESS();
 void BUTTON_ENC_1_PRESS();
 void BUTTON_ENC_2_PRESS();
 void BUTTON_ENC_3_PRESS();
-void BUTTON_ENC_3_RELEASE();
 
 void ENC_0_LEFT();
 void ENC_1_LEFT();
