@@ -11,11 +11,9 @@ void loop() {
   captureInputStateFrame(&currentStates);
   compareInputStateFrames(&previousStates, &currentStates);
   copyInputStateFrame(&previousStates, &currentStates);
-
   long t1 = micros();
   int delta = t1 - t0;
   float deltaMillis = float(delta) / 1000;
   Serial.println("delta: " + String(deltaMillis) + " miliseconds");
-  
   delayMicroseconds(10000 - delta);
 }
