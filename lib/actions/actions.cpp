@@ -11,10 +11,10 @@ void doohickeyInit() {
   BootKeyboard.begin();
   Consumer.begin();
 
-  pinMode(BUTTON_0, INPUT);
-  pinMode(BUTTON_1, INPUT);
-  pinMode(BUTTON_2, INPUT);
-  pinMode(BUTTON_3, INPUT);
+  pinMode(BUTTON_0, INPUT_PULLUP);
+  pinMode(BUTTON_1, INPUT_PULLUP);
+  pinMode(BUTTON_2, INPUT_PULLUP);
+  pinMode(BUTTON_3, INPUT_PULLUP);
   pinMode(ENC_0_BUTTON, INPUT_PULLUP);
   pinMode(ENC_1_BUTTON, INPUT_PULLUP);
   pinMode(ENC_2_BUTTON, INPUT_PULLUP);
