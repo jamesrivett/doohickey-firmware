@@ -23,8 +23,8 @@ void captureInputStateFrame(InputStateFrame* frame) {
   noInterrupts();
   frame->ENC_0 = (-1 * ENC_0.read()) / 4;
   frame->ENC_1 = (-1 * ENC_1.read()) / 4;
-  frame->ENC_2 = ENC_2.read() / 4;
-  frame->ENC_3 = ENC_3.read() / 4;
+  frame->ENC_2 = (-1 * ENC_2.read()) / 4;
+  frame->ENC_3 = (-1 * ENC_3.read()) / 2;
   interrupts();
 }
 
