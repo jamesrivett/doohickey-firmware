@@ -6,9 +6,9 @@ int BUTTON_1 = 15;
 int BUTTON_2 = 14;
 int BUTTON_3 = 7;
 
-int ENC_0_BUTTON = 19;
+int ENC_0_BUTTON = 21;
 int ENC_1_BUTTON = 20;
-int ENC_2_BUTTON = 21;
+int ENC_2_BUTTON = 19;
 int ENC_3_BUTTON = 16;
 
 int ENC_0_CLK = 1;

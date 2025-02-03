@@ -56,7 +56,9 @@ void BUTTON_ENC_1_PRESS() {
 }
 
 void BUTTON_ENC_2_PRESS() {
-  BootKeyboard.write(KEY_ENTER);
+  BootKeyboard.press(KEY_RIGHT_ALT);
+  BootKeyboard.write(KEY_RIGHT_BRACE);
+  BootKeyboard.release(KEY_RIGHT_ALT);
 }
 
 void BUTTON_ENC_3_PRESS() {
@@ -113,8 +115,10 @@ void ENC_2_RIGHT() {
 }
 
 void ENC_3_LEFT() {
+  Consumer.write(MEDIA_VOL_UP);
 }
 void ENC_3_RIGHT() {
+  Consumer.write(MEDIA_VOL_DOWN);
 }
 
 void scrollBlink(int scrolling_speed) {
