@@ -12,10 +12,10 @@ InputStateFrame currentStates;
 InputStateFrame previousStates;
 
 void captureInputStateFrame(InputStateFrame* frame) {
-  frame->BUTTON_0 = digitalRead(BUTTON_0);
-  frame->BUTTON_1 = digitalRead(BUTTON_1);
-  frame->BUTTON_2 = digitalRead(BUTTON_2);
-  frame->BUTTON_3 = digitalRead(BUTTON_3);
+  frame->BUTTON_0 = !digitalRead(BUTTON_0);
+  frame->BUTTON_1 = !digitalRead(BUTTON_1);
+  frame->BUTTON_2 = !digitalRead(BUTTON_2);
+  frame->BUTTON_3 = !digitalRead(BUTTON_3);
   frame->ENC_0_BUTTON = !digitalRead(ENC_0_BUTTON);
   frame->ENC_1_BUTTON = !digitalRead(ENC_1_BUTTON);
   frame->ENC_2_BUTTON = !digitalRead(ENC_2_BUTTON);
