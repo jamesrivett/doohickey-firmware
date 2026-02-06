@@ -17,8 +17,6 @@ struct InputStateFrame {
 
 extern bool SHIFT;
 extern int SCROLLING_SPEED;
-extern long lastModeChange;
-extern long timeSinceLastModeChange;
 extern InputStateFrame previousStates;
 extern InputStateFrame currentStates;
 
